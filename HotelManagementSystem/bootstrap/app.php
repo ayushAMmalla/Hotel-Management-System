@@ -15,4 +15,8 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
+        
     })->create();
+    $app->routeMiddleware([
+        'role' => \App\Http\Middleware\RoleMiddleware::class,
+    ]);
