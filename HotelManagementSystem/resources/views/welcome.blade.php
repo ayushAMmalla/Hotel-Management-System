@@ -147,7 +147,7 @@
     </section>
 
     <section id="rooms" class="bg-white py-4">
-        <h1 class="text-center">OUr Rooms</h1>        
+        <h1 class="text-center">Our Rooms</h1>        
         <div class="container-fluid">
             <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
                 @forelse($rooms as $room)
@@ -171,7 +171,7 @@
                             </p>
                         </div>
                         <div class="card-footer bg-white border-top-0">
-                            <a href="{{ route('rooms.show', $room->id) }}" class="btn btn-primary w-100">View Details</a>
+                            <a href="{{ route('rooms.show', $room->id) }}" class="btn btn-outline-primary w-100">View Details</a>
                         </div>
                     </div>
                 </div>

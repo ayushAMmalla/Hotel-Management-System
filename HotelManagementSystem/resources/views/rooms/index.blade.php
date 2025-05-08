@@ -1,16 +1,16 @@
 @extends('layouts.app')
 <style>
-        .fixed-size-img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
+    .fixed-size-img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
 
-        .card:hover .fixed-size-img {
-            transform: scale(1.03);
-        }
-    </style>
+    .card:hover .fixed-size-img {
+        transform: scale(1.03);
+    }
+</style>
 @section('content')
 <div class="container py-5">
     <h1 class="mb-4 text-center fw-bold">Explore Our Rooms</h1>
@@ -51,42 +51,44 @@
     </div>
 
     <!-- Room Listing -->
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-        @forelse($rooms as $room)
-        <div class="col">
-            <div class="card h-100 shadow-sm border-0">
-                @if($room->images->count() > 0)
-                    <img src="{{ asset('storage/' . $room->images->first()->image_path) }}" 
-                         class="card-img-top rounded-top fixed-size-img" 
-                         alt="{{ $room->title }}">
-                @else
-                    <img src="{{ asset('images/default-room.jpg') }}" 
-                         class="card-img-top rounded-top fixed-size-img" 
-                         alt="Default Room Image">
-                @endif
+        <h1 class="text-center mb-4">Available rooms</h1>
+        <div class="container-fluid">
+            <div class="row row-cols-2 row-cols-sm-1 row-cols-md-3 row-cols-lg-3 row-cols-xl-4 g-3">
+                @forelse($rooms as $room)
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0">
+                        @if($room->images->count() > 0)
+                        <img src="{{ asset('storage/' . $room->images->first()->image_path) }}"
+                            class="card-img-top rounded-top fixed-size-img"
+                            alt="{{ $room->title }}">
+                        @else
+                        <img src="{{ asset('images/default-room.jpg') }}"
+                            class="card-img-top rounded-top fixed-size-img"
+                            alt="Default Room Image">
+                        @endif
 
-                <div class="card-body">
-                    <h5 class="card-title text-primary">{{ $room->title }}</h5>
-                    <p class="card-text text-muted">
-                        <strong>Type:</strong> {{ ucfirst($room->type) }}<br>
-                        <strong>Price:</strong> ${{ number_format($room->price, 2) }} / night<br>
-                        <strong>Capacity:</strong> {{ $room->capacity }} person(s)
-                    </p>
+                        <div class="card-body">
+                            <h5 class="card-title fs-4">{{ $room->title }}</h5>
+                            <p class="card-text text-muted">
+                                <strong>Type:</strong> {{ ucfirst($room->type) }}<br>
+                                <strong>Price:</strong> Rs. {{ number_format($room->price, 2) }} per night<br>
+                                <strong>Capacity:</strong> {{ $room->capacity }} person(s)
+                            </p>
+                        </div>
+                        <div class="card-footer bg-white border-top-0">
+                            <a href="{{ route('rooms.show', $room->id) }}" class="btn btn-outline-primary w-100">View Details</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-footer bg-white border-top-0">
-                    <a href="{{ route('rooms.show', $room->id) }}" class="btn btn-outline-primary w-100">View Details</a>
+                @empty
+                <div class="col-12">
+                    <div class="alert alert-warning text-center">
+                        No rooms available matching your criteria.
+                    </div>
                 </div>
+                @endforelse
             </div>
         </div>
-        @empty
-        <div class="col-12">
-            <div class="alert alert-warning text-center">
-                No rooms available matching your criteria.
-            </div>
-        </div>
-        @endforelse
-    </div>
-
     <div class="mt-4 d-flex justify-content-center">
         {{ $rooms->links() }}
     </div>

@@ -41,7 +41,7 @@
                         <input type="tel" class="form-control" id="phone">
                     </div>
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="subject" class="form-label">Subject*</label>
                         <select class="form-select" id="subject" required>
                             <option value="" selected disabled>Select a subject</option>
@@ -51,19 +51,17 @@
                             <option value="general">General Inquiry</option>
                             <option value="other">Other</option>
                         </select>
-                    </div>
+                    </div> -->
 
                     <div class="form-group">
                         <label for="message" class="form-label">Your Message*</label>
                         <textarea class="form-control" id="message" required></textarea>
                     </div>
 
-                    <div class="form-group form-check mb-4">
-                        <input type="checkbox" class="form-check-input" id="newsletter">
-                        <label class="form-check-label" for="newsletter">Subscribe to our newsletter</label>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">Send Message</button>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Send Message</button>
                 </form>
             </div>
         </div>
