@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HotelSewa - Hotel Management System</title>
+    <title>HotelSewa</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -73,7 +73,7 @@
                         <a href="{{ url('/rooms') }}" class="nav-link">Rooms</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/contact') }}" class="nav-link">Contact Us</a>
+                        <a href="{{ url('/contactUs') }}" class="nav-link">Contact Us</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ url('/facilities') }}" class="nav-link">Facilities</a>

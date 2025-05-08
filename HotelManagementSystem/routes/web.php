@@ -4,7 +4,9 @@ use App\Http\Controllers\Admin\BookingController as AdminBookingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RoomController as AdminRoomController;
 use App\Http\Controllers\Customer\BookingController as CustomerBookingController;
+use App\Http\Controllers\Customer\CustomerController as CustomerCustomerController;
 use App\Http\Controllers\Customer\RoomController as CustomerRoomController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', [CustomerRoomController::class, 'showRooms'])->name('customer.home');
@@ -46,6 +48,7 @@ Route::middleware(['auth', 'role.auth:customer'])->group(function () {
     Route::get('/bookings/{booking}', [CustomerBookingController::class, 'show'])->name('bookings.show');
     Route::post('/bookings', [CustomerBookingController::class, 'store'])->name('bookings.store');
 
+    Route::get('/contactUs', [CustomerCustomerController::class, 'contactUs'])->name('contactUs');
 });
 
 require __DIR__ . '/auth.php';
