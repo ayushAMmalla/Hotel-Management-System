@@ -1,16 +1,27 @@
 @extends('layouts.app')
+<style>
+        .fixed-size-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
 
+        .card:hover .fixed-size-img {
+            transform: scale(1.03);
+        }
+    </style>
 @section('content')
 <div class="container py-5">
-    <h1 class="mb-4">Our Rooms</h1>
-    
+    <h1 class="mb-4 text-center fw-bold">Explore Our Rooms</h1>
+
     <!-- Filters -->
-    <div class="card mb-4">
+    <div class="card mb-5 shadow-sm border-0">
         <div class="card-body">
             <form action="{{ route('rooms.index') }}" method="GET">
-                <div class="row">
+                <div class="row g-3">
                     <div class="col-md-3">
-                        <label>Room Type</label>
+                        <label class="form-label fw-semibold">Room Type</label>
                         <select name="type" class="form-select">
                             <option value="">All Types</option>
                             <option value="standard" {{ request('type') === 'standard' ? 'selected' : '' }}>Standard</option>
@@ -19,48 +30,65 @@
                         </select>
                     </div>
                     <div class="col-md-3">
-                        <label>Min Price</label>
-                        <input type="number" name="min_price" class="form-control" value="{{ request('min_price') }}">
+                        <label class="form-label fw-semibold">Min Price</label>
+                        <input type="number" name="min_price" class="form-control" value="{{ request('min_price') }}" placeholder="e.g. 100">
                     </div>
                     <div class="col-md-3">
-                        <label>Max Price</label>
-                        <input type="number" name="max_price" class="form-control" value="{{ request('max_price') }}">
+                        <label class="form-label fw-semibold">Max Price</label>
+                        <input type="number" name="max_price" class="form-control" value="{{ request('max_price') }}" placeholder="e.g. 500">
                     </div>
                     <div class="col-md-3">
-                        <label>Capacity</label>
-                        <input type="number" name="capacity" class="form-control" value="{{ request('capacity') }}" min="1">
+                        <label class="form-label fw-semibold">Capacity</label>
+                        <input type="number" name="capacity" class="form-control" value="{{ request('capacity') }}" min="1" placeholder="e.g. 2">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary mt-3">Apply Filters</button>
-                <a href="{{ route('rooms.index') }}" class="btn btn-secondary mt-3">Reset</a>
+                <div class="mt-3 text-end">
+                    <button type="submit" class="btn btn-primary me-2">Apply Filters</button>
+                    <a href="{{ route('rooms.index') }}" class="btn btn-outline-secondary">Reset</a>
+                </div>
             </form>
         </div>
     </div>
-    
+
     <!-- Room Listing -->
-    <div class="row">
-        @foreach($rooms as $room)
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        @forelse($rooms as $room)
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
                 @if($room->images->count() > 0)
-                <img src="{{ asset('storage/' . $room->images->first()->image_path) }}" class="card-img-top" alt="{{ $room->title }}">
+                    <img src="{{ asset('storage/' . $room->images->first()->image_path) }}" 
+                         class="card-img-top rounded-top fixed-size-img" 
+                         alt="{{ $room->title }}">
+                @else
+                    <img src="{{ asset('images/default-room.jpg') }}" 
+                         class="card-img-top rounded-top fixed-size-img" 
+                         alt="Default Room Image">
                 @endif
+
                 <div class="card-body">
-                    <h5 class="card-title">{{ $room->title }}</h5>
-                    <p class="card-text">
+                    <h5 class="card-title text-primary">{{ $room->title }}</h5>
+                    <p class="card-text text-muted">
                         <strong>Type:</strong> {{ ucfirst($room->type) }}<br>
-                        <strong>Price:</strong> ${{ number_format($room->price, 2) }} per night<br>
+                        <strong>Price:</strong> ${{ number_format($room->price, 2) }} / night<br>
                         <strong>Capacity:</strong> {{ $room->capacity }} person(s)
                     </p>
                 </div>
-                <div class="card-footer bg-white">
-                    <a href="{{ route('rooms.show', $room->id) }}" class="btn btn-primary">View Details</a>
+                <div class="card-footer bg-white border-top-0">
+                    <a href="{{ route('rooms.show', $room->id) }}" class="btn btn-outline-primary w-100">View Details</a>
                 </div>
             </div>
         </div>
-        @endforeach
+        @empty
+        <div class="col-12">
+            <div class="alert alert-warning text-center">
+                No rooms available matching your criteria.
+            </div>
+        </div>
+        @endforelse
     </div>
-    
-    {{ $rooms->links() }}
+
+    <div class="mt-4 d-flex justify-content-center">
+        {{ $rooms->links() }}
+    </div>
 </div>
 @endsection
