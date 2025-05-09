@@ -100,9 +100,6 @@
         .btn-primary {
             background-color: var(--primary);
             border-color: var(--primary);
-            padding: 12px 30px;
-            font-weight: 600;
-            text-transform: uppercase;
             letter-spacing: 1px;
         }
 
@@ -182,7 +179,7 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand fs-3 fw-bold me-4" href="{{ route('customer.home') }}">HotelSewa</a>
+            <a class="navbar-brand fs-3 fw-bold me-4">HotelSewa</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -205,11 +202,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/contactUs') }}">Contact Us</a>
                     </li>
+                    
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/facilities') }}">Facilities</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/booking') }}">Booking</a>
+                        <a class="nav-link" href="{{ url('/bookings') }}">Booking</a>
                     </li>
                     @endif
                 </ul>

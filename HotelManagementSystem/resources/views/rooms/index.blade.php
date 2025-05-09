@@ -26,7 +26,6 @@
                             <option value="">All Types</option>
                             <option value="standard" {{ request('type') === 'standard' ? 'selected' : '' }}>Standard</option>
                             <option value="deluxe" {{ request('type') === 'deluxe' ? 'selected' : '' }}>Deluxe</option>
-                            <option value="suite" {{ request('type') === 'suite' ? 'selected' : '' }}>Suite</option>
                         </select>
                     </div>
                     <div class="col-md-3">

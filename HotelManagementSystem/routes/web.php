@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController as AdminAdminController;
 use App\Http\Controllers\Admin\BookingController as AdminBookingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RoomController as AdminRoomController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Customer\BookingController as CustomerBookingController;
 use App\Http\Controllers\Customer\CustomerController as CustomerCustomerController;
 use App\Http\Controllers\Customer\RoomController as CustomerRoomController;
@@ -12,9 +14,10 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', [CustomerRoomController::class, 'showRooms'])->name('customer.home');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Admin-specific routes
+Route::middleware(['auth', 'role.auth:admin'])->group(function () {
+    Route::get('dashboard', [AdminAdminController::class, 'index'])->name('dashboard');
+});
 
 Route::middleware('auth')->group(function () {
     // Profile routes
@@ -33,8 +36,6 @@ Route::middleware(['auth', 'role.auth:admin'])->prefix('admin')->name('admin.')-
     Route::get('/admin/bookings', [AdminBookingController::class, 'index'])->name('admin.bookings.index');
     Route::put('/admin/bookings/{booking}/approve', [AdminBookingController::class, 'approve'])->name('admin.bookings.approve');
     Route::put('/admin/bookings/{booking}/reject', [AdminBookingController::class, 'reject'])->name('admin.bookings.reject');
-
-
 });
 
 
@@ -47,6 +48,8 @@ Route::middleware(['auth', 'role.auth:customer'])->group(function () {
     Route::get('/rooms/{room}', [CustomerRoomController::class, 'show'])->name('rooms.show');
     Route::get('/bookings/{booking}', [CustomerBookingController::class, 'show'])->name('bookings.show');
     Route::post('/bookings', [CustomerBookingController::class, 'store'])->name('bookings.store');
+    Route::get('/bookings', [CustomerBookingController::class, 'index'])->name('bookings.index');
+    Route::post('/bookings/{booking}/cancel', [CustomerBookingController::class, 'cancelRequest'])->name('bookings.cancel');
 
     Route::get('/contactUs', [CustomerCustomerController::class, 'contactUs'])->name('contactUs');
 });

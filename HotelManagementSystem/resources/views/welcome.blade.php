@@ -17,7 +17,15 @@
     <!-- Fonts -->
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
         .hero-section {
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa');
             background-size: cover;
@@ -75,8 +83,8 @@
                     <li class="nav-item">
                         <a href="{{ url('/contactUs') }}" class="nav-link">Contact Us</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ url('/facilities') }}" class="nav-link">Facilities</a>
+                     <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/bookings') }}">Booking</a>
                     </li>
                 </ul>
 
