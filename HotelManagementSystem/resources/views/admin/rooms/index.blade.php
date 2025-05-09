@@ -25,7 +25,7 @@
                         <td>{{ $room->id }}</td>
                         <td>{{ $room->title }}</td>
                         <td>{{ ucfirst($room->type) }}</td>
-                        <td>${{ number_format($room->price, 2) }}</td>
+                        <td>Rs. {{ number_format($room->price, 2) }}</td>
                         <td>
                             <span class="badge bg-{{ $room->status === 'available' ? 'success' : ($room->status === 'occupied' ? 'danger' : 'warning') }}">
                                 {{ ucfirst($room->status) }}
