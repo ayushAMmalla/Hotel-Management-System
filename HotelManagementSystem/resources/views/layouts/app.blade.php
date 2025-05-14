@@ -191,8 +191,10 @@
                         <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.rooms.index') }}">View Room</a>
+                        <a class="nav-link" href="{{ route('admin.rooms.index') }}">Room</a>
                     </li>
+                    <a class="nav-link {{ request()->routeIs('admin.bookings.index') ? 'active' : '' }}" href="{{ route('admin.bookings.index') }}">Booking</a>
+
                     @endif
 
                     @if(auth()->user()->isCustomer())

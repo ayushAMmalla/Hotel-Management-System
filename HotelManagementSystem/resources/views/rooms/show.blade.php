@@ -13,7 +13,7 @@
         <div class="col-md-6">
             <h2 class="fw-bold">{{ $room->title }}</h2>
             <p><strong>Type:</strong> {{ ucfirst($room->type) }}</p>
-            <p><strong>Price:</strong> ${{ number_format($room->price, 2) }} / night</p>
+            <p><strong>Price:</strong> Rs. {{ number_format($room->price, 2) }} / night</p>
             <p><strong>Capacity:</strong> {{ $room->capacity }} person(s)</p>
             <p><strong>Description:</strong> {{ $room->description ?? 'No description available.' }}</p>
 

@@ -33,9 +33,13 @@ Route::middleware(['auth', 'role.auth:admin'])->prefix('admin')->name('admin.')-
     Route::resource('rooms', AdminRoomController::class);
     Route::delete('room-images/{image}', [AdminRoomController::class, 'destroyImage'])->name('room-images.destroy');
 
-    Route::get('/admin/bookings', [AdminBookingController::class, 'index'])->name('admin.bookings.index');
-    Route::put('/admin/bookings/{booking}/approve', [AdminBookingController::class, 'approve'])->name('admin.bookings.approve');
-    Route::put('/admin/bookings/{booking}/reject', [AdminBookingController::class, 'reject'])->name('admin.bookings.reject');
+    
+
+
+    Route::get('/bookings', [AdminBookingController::class, 'index'])->name('bookings.index');
+    Route::post('/bookings/{booking}/approve', [AdminBookingController::class, 'approve'])->name('bookings.approve');
+    Route::post('/bookings/{booking}/reject', [AdminBookingController::class, 'reject'])->name('bookings.reject');
+
 });
 
 
