@@ -26,7 +26,7 @@
                     {{ \Carbon\Carbon::parse($booking->check_in)->format('Y-m-d') }} to
                     {{ \Carbon\Carbon::parse($booking->check_out)->format('Y-m-d') }}
                 </td>
-                <td>${{ number_format($booking->total_price, 2) }}</td>
+                <td>Rs. {{ number_format($booking->total_price, 2) }}</td>
                 <td>{{ ucfirst($booking->status) }}</td>
                 <td>
                     @if($booking->status === 'pending')

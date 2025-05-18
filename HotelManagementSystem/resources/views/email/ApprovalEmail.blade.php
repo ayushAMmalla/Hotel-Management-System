@@ -1,5 +1,4 @@
 @component('mail::message')
-# Booking {{ ucfirst($action) }}
 
 Your booking #{{ $booking->id }} has been {{ $action }}.
 
