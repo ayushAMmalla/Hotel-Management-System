@@ -3,13 +3,35 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
 use App\Models\Room;
 use App\Models\RoomImage;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class RoomController extends Controller
 {
+    public function apiAvailability()
+    {
+        $bookings = Booking::all();
+
+        $events = $bookings->map(function ($booking) {
+            return [
+                'title' => 'Booked',
+                'start' => Carbon::parse($booking->start_date)->toDateString(),
+                'end' => Carbon::parse($booking->end_date)->addDay()->toDateString(), 
+                'color' => '#e74c3c',
+            ];
+        });
+
+        return response()->json($events);
+    }
+    public function calendarView()
+    {
+        return view('calendar');
+    }
+
     public function index()
     {
         $rooms = Room::with('images')->paginate(10);

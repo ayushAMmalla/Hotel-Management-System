@@ -26,6 +26,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/rooms/availability', [AdminRoomController::class, 'apiAvailability']);
+
+Route::get('/calendar', [AdminRoomController::class, 'calendarView']);
+
 // ------------------------
 // Admin Routes
 // ------------------------
