@@ -27,7 +27,7 @@
         <tbody>
             @foreach($bookings as $booking)
             <tr>
-                <td>{{ $booking->rooms->title ?? 'N/A' }}</td>
+                <td>{{ $booking->room->title ?? 'N/A' }}</td>
                 <td>{{ \Carbon\Carbon::parse($booking->check_in)->format('d M Y') }}</td>
                 <td>{{ \Carbon\Carbon::parse($booking->check_out)->format('d M Y') }}</td>
                 <td>Rs. {{ number_format($booking->total_price, 2) }}</td>

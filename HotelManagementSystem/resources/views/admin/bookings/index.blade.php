@@ -21,7 +21,7 @@
             <tr>
                 <td>{{ $booking->id }}</td>
                 <td>{{ $booking->user->name }}</td>
-                <td>{{ $booking->room->name }}</td>
+                <td>{{ $booking->room->title }}</td>
                 <td>
                     {{ \Carbon\Carbon::parse($booking->check_in)->format('Y-m-d') }} to
                     {{ \Carbon\Carbon::parse($booking->check_out)->format('Y-m-d') }}
